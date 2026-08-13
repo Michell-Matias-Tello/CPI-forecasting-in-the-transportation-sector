@@ -106,7 +106,7 @@ forecasts = load_predictions()
 # SIDEBAR CONTROLS
 # ============================================================
 
-st.sidebar.header("⚙️ Controls")
+st.sidebar.header("⚙️ Date Filter")
 
 # Date range filter
 min_date = data['Fecha'].min()
