@@ -471,6 +471,7 @@ generate_text_report <- function() {
   
   cat("FECHA:", Sys.Date(), "\n")
   cat("AUTOR: Michell Karen Angélica Matias Tello\n\n")
+  cat("CURSO: Seminario Capstone\n\n")
   
   cat(paste(rep("-", 80), collapse = ""), "\n")
   cat("RESUMEN EJECUTIVO\n")
