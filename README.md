@@ -106,3 +106,26 @@ proyecto-ipc-transporte/
 │   └── reports/            # Generated text reports (summary.txt)
 │
 └── .gitignore              # Excludes large files and temporary outputs
+
+```
+
+Dependencies & Execution
+Requires R and the packages: tidyverse, readxl, zoo, tseries, forecast, ggplot2, viridis, lmtest, knitr, urca, scales.
+
+To run:
+
+Clone the repository.
+
+Place IPC_EN_TRANSPORTE.xlsx in data/raw/.
+
+Run main_script.R. All outputs (tables and figures) will populate the outputs/ directory automatically.
+
+7. Strategic Recommendations & Future Enhancements
+Statistical Superiority: The comparative evaluation conclusively establishes SARIMA(1,0,1)(1,0,1)₁₂ as the optimal model. The 18% reduction in RMSE translates to tighter operational control in forecasting.
+
+Proactive Planning: The predicted 1.84% spike in December 2024 signals a need for anticipatory policy measures and budgetary adjustments.
+
+Reproducibility: By packaging the entire analysis into a single executable script, this project guarantees full reproducibility, allowing for seamless updates when new monthly data becomes available.
+
+Further Refinement: For future iterations, external factors such as international oil prices or specific regulatory events could be integrated via ARIMAX or Machine Learning (LSTM) approaches to improve resilience against structural breaks.
+
