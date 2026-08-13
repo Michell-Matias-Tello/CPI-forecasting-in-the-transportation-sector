@@ -29,9 +29,17 @@ Open your browser and go to: `http://localhost:8501`
 
 ---
 
+
 ## ✅ What the Dashboard Shows
 
 - **Time Series**: Historical CPI with moving averages and volatility bands
 - **Forecast**: Predictions with 80% and 95% confidence intervals
 - **Decomposition**: Trend, seasonal, and residual components
 - **Data Table**: Full dataset with filtering and sorting
+
+---
+
+🌐 **Live Dashboard (No installation required):**  
+👉 [https://tuusuario.streamlit.app/](https://tuusuario.streamlit.app/)
+
+
