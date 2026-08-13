@@ -119,7 +119,7 @@ ipc_data <- read_excel(data_file, col_types = c("date", "numeric")) %>%
 cat("✅ Data loaded:", nrow(ipc_data), "observations\n")
 
 # ================================================================
-# PARTE 3: ANÁLISIS EXPLORATORIO - CORREGIDO
+# PARTE 3: ANÁLISIS EXPLORATORIO 
 # ================================================================
 
 cat("\n📈 Exploratory analysis...\n")
