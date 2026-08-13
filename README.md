@@ -95,8 +95,8 @@ proyecto-ipc-transporte/
 ├── LICENSE                 # MIT License
 │
 ├── Dashboard/
-│    ├── dashboard.py
-│    └── README.md  
+│   ├── dashboard.py
+│   └── README.md  
 │
 ├── data/
 │   └── processed/
