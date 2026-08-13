@@ -29,24 +29,6 @@ Open your browser and go to: `http://localhost:8501`
 
 ---
 
-## 📁 Required Directory Structure
-
-Create these folders before running:
-
-```
-Insurance/
-├── dashboard.py
-├── data/
-│   └── processed/
-│       └── ipc_smoothed.csv    # Will be auto-generated if missing
-├── outputs/
-│   └── tables/
-│       └── forecasts.csv        # Will be auto-generated if missing
-└── models/                      # Optional
-```
-
----
-
 ## ✅ What the Dashboard Shows
 
 - **Time Series**: Historical CPI with moving averages and volatility bands
