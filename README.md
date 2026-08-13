@@ -109,23 +109,174 @@ proyecto-ipc-transporte/
 
 ```
 
-Dependencies & Execution
-Requires R and the packages: tidyverse, readxl, zoo, tseries, forecast, ggplot2, viridis, lmtest, knitr, urca, scales.
+---
 
-To run:
+## 7. ANALYTICAL FRAMEWORK
 
-Clone the repository.
+### 7.1. Exploratory Data Analysis Phase
 
-Place IPC_EN_TRANSPORTE.xlsx in data/raw/.
+- Comprehensive time series visualisation to identify trends, cycles, and outliers.
+- Descriptive statistical computation and monthly distribution analysis.
+- Seasonal pattern identification through boxplots and decomposition.
+- Autocorrelation structure evaluation using ACF and PACF.
+- Stationarity verification via Augmented Dickey-Fuller test.
 
-Run main_script.R. All outputs (tables and figures) will populate the outputs/ directory automatically.
+### 7.2. Data Preparation Phase
 
-7. Strategic Recommendations & Future Enhancements
-Statistical Superiority: The comparative evaluation conclusively establishes SARIMA(1,0,1)(1,0,1)₁₂ as the optimal model. The 18% reduction in RMSE translates to tighter operational control in forecasting.
+- Central smoothing using a 5-point moving average to reduce noise.
+- Targeted outlier treatment for anomalous periods (e.g., specific months in 2003).
+- Logarithmic transformation to stabilise variance and handle extreme values.
+- Train-test split with the last 12 months reserved for validation.
 
-Proactive Planning: The predicted 1.84% spike in December 2024 signals a need for anticipatory policy measures and budgetary adjustments.
+### 7.3. Model Development Phase
 
-Reproducibility: By packaging the entire analysis into a single executable script, this project guarantees full reproducibility, allowing for seamless updates when new monthly data becomes available.
+SARIMA Candidate Models Evaluated:
 
-Further Refinement: For future iterations, external factors such as international oil prices or specific regulatory events could be integrated via ARIMAX or Machine Learning (LSTM) approaches to improve resilience against structural breaks.
+| Model Number | Non-Seasonal Order (p,d,q) | Seasonal Order (P,D,Q) |
+|--------------|---------------------------|----------------------|
+| 1            | (0,1,1)                   | (0,1,1)12            |
+| 2            | (1,0,1)                   | (1,0,1)12            |
+| 3            | (2,0,0)                   | (0,1,1)12            |
+| 4            | (1,0,1)                   | (0,1,1)12            |
+| 5            | (0,0,1)                   | (1,1,1)12            |
 
+Holt-Winters Configuration:
+
+- Seasonal type: Additive (based on decomposition analysis)
+- Optimised smoothing parameters:
+  - Alpha (level)   = 0.3627
+  - Beta  (trend)   = 0.0462
+  - Gamma (seasonal)= 0.2516
+- Optimisation criterion: Minimisation of MAPE via GRG Nonlinear Solver.
+
+### 7.4. Model Validation Phase
+
+- Residual diagnostics (ACF, PACF, Q-Q plots) for each candidate model.
+- Ljung-Box test for autocorrelation of residuals.
+- Shapiro-Wilk test for normality of residuals.
+- Comparative performance evaluation using MAE, RMSE, and MAPE.
+
+### 7.5. Forecasting Phase
+
+- 4-step-ahead forecast horizon (periods 1-4).
+- Confidence intervals at 80% and 95% significance levels.
+- Inverse transformation to restore original scale for interpretability.
+
+---
+
+## 8. FINDINGS AND INTERPRETATION
+
+### 8.1. Model Selection Rationale
+
+The SARIMA(1,0,1)(1,0,1)12 model was selected as the optimal methodology based on:
+
+1. Statistical Superiority: Lowest MAE, RMSE, and MAPE values among all candidates.
+2. Residual Independence: Ljung-Box test p-value > 0.05, confirming no significant autocorrelation.
+3. Normality: Shapiro-Wilk test p-value > 0.05, supporting the normality assumption.
+4. Parsimony: Optimal balance between model complexity and fit (AIC and BIC criteria).
+5. Out-of-Sample Stability: Consistent performance across the validation period.
+
+### 8.2. Forecast Implications
+
+The projected upward trajectory, particularly in the fourth period, suggests:
+
+- Seasonal Amplification: End-of-year demand pressures may drive CPI increases.
+- Inflationary Accumulation: Persistent cost pressures in the transportation sector.
+- Structural Drivers: Fuel prices, regulatory changes, and supply-chain dynamics.
+- Policy Relevance: These forecasts can inform fiscal and monetary policy decisions.
+
+---
+
+## 9. TECHNICAL SPECIFICATIONS
+
+### 9.1. R Package Dependencies
+
+| Package   | Minimum Version | Purpose |
+|-----------|-----------------|---------|
+| tidyverse | 2.0.0           | Data manipulation, transformation, and visualisation |
+| readxl    | 1.4.0           | Excel file import |
+| zoo       | 1.8.0           | Time series operations and rolling functions |
+| tseries   | 0.10.0          | Stationarity testing |
+| forecast  | 8.21.0          | ARIMA and Holt-Winters modelling |
+| ggplot2   | 3.4.0           | Advanced data visualisation |
+| viridis   | 0.6.0           | Colour palette management |
+| lmtest    | 0.9.0           | Diagnostic testing |
+| knitr     | 1.45.0          | Table formatting and report generation |
+| urca      | 1.3.0           | Unit root testing |
+| scales    | 1.3.0           | Axis scaling and label formatting |
+
+### 9.2. Installation Commands
+Install core packages
+install.packages(c(
+"tidyverse", "readxl", "zoo", "tseries",
+"forecast", "ggplot2", "viridis", "lmtest",
+"knitr", "urca", "scales"
+))
+
+#### Optional: Install packages for report generation
+install.packages(c("rmarkdown", "tinytex"))
+tinytex::install_tinytex()
+
+---
+
+## 10. REPRODUCIBILITY PROTOCOL
+
+This project adheres to the highest standards of reproducible research:
+
+- Single Execution: The complete workflow is encapsulated in main_script.R.
+- Automated Generation: All outputs (tables, figures, reports) are generated programmatically without manual steps.
+- Version Control: Full history is maintained through Git, enabling auditability.
+- Comprehensive Documentation: Extensive code comments and this README provide full transparency.
+- Dependency Management: All required packages are explicitly listed with version recommendations.
+
+---
+
+## 11. LICENSING AND TERMS
+
+This project is distributed under the MIT License. See the LICENSE file for complete terms and conditions governing use, modification, and distribution.
+
+---
+
+## 12. LIMITATIONS AND DISCLAIMER
+
+The forecasts and analyses presented are based on statistical modelling of historical data. Results are provided for informational and research purposes only. The following limitations should be carefully considered:
+
+- Forecast accuracy depends on the continuation of historical patterns.
+- External shocks (e.g., policy changes, global events) may significantly alter outcomes.
+- Confidence intervals provide probabilistic guidance, not deterministic guarantees.
+- Users should exercise independent judgment and consult qualified professionals before making decisions based on these findings.
+
+---
+
+## 13. VERSION HISTORY
+
+| Version | Release Date | Description of Changes |
+|---------|--------------|------------------------|
+| 1.0     | November 2024 | Initial release with complete analysis framework and full documentation |
+
+---
+
+## 14. ACKNOWLEDGMENTS
+
+This research was conducted as part of an academic program. The author expresses sincere gratitude to:
+
+- Academic Supervisors for their guidance and valuable feedback.
+- Institutional Support for providing resources and infrastructure.
+- Data Providers for making historical economic data available.
+- Open-Source Community for developing and maintaining the essential analytical tools used in this project.
+
+---
+
+## 15. SUPPORT AND CONTACT
+
+For questions, issues, or support requests regarding this project:
+
+- Submit an issue through the GitHub repository's issue tracker.
+- Review the code comments and documentation for detailed guidance.
+- Consult the outputs/ directory for comprehensive result files.
+
+---
+
+Document Version: 1.0
+Last Updated: November 2024
+Project Status: Complete
