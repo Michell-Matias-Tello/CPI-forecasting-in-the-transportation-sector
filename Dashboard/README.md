@@ -20,7 +20,7 @@ Or if you're in VS Code:
 
 ```bash
 # Open terminal and run:
-streamlit run "c:/Users/Michell/Downloads/Insurance/Seguros/Insurance/dashboard.py"
+streamlit run "c:/Users/User/dashboard.py"
 ```
 
 ### Step 4: Access the dashboard
