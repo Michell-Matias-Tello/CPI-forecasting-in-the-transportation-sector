@@ -39,7 +39,9 @@ Open your browser and go to: `http://localhost:8501`
 
 ---
 
+## 📊 CPI Dashboard - APP
+
 🌐 **Live Dashboard (No installation required):**  
-👉 [https://tuusuario.streamlit.app/](https://tuusuario.streamlit.app/)
+👉 [CPI-forecasting-in-the-transportation-sector/Dashboard](https://cpi-forecasting-in-the-transportation-sector-8kdwvfcrg5eixzujw.streamlit.app/)
 
 
